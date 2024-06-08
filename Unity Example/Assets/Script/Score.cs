@@ -11,12 +11,12 @@ public class Score : MonoBehaviour
     void Start()
     {
         scoreText = GetComponent<TMP_Text>();
-        scoreText.text = "0";
+        scoreText.text = "Score : 0 ";
     }
     public void IncreaseScore(int increaseAmount)
     {
         score += increaseAmount;
-        scoreText.text = score.ToString();
+        scoreText.text = "Score : " + score.ToString();
     }
    
 }
