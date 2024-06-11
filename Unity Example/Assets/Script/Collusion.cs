@@ -1,26 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Collusion : MonoBehaviour
 {
     [SerializeField] float loaddelay = 1f;
-    [SerializeField] ParticleSystem crashVfx;
-    private void OnTriggerEnter(Collider other)
-    {
-        CrashProcess();
-    }
+    [SerializeField] GameObject crashVfx;
+    public GameObject ecder;
+    public GameObject ecder2;
+    [SerializeField] Transform parent;
 
-    private void CrashProcess()
+
+
+
+    private void OnTriggerEnter(Collider collision)
+
     {
-        crashVfx.Play();
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<Movement>().enabled = false;
+        Debug.Log("asd");
+        GameObject vfx = Instantiate(crashVfx, transform.position, Quaternion.identity);
+        vfx.transform.parent = parent;
+
+        ecder.GetComponent<SkinnedMeshRenderer>().enabled = false;
+        ecder2.GetComponent<Movement>().enabled = false;
         GetComponent<BoxCollider>().enabled = false;
         Invoke("Reloadlevel", loaddelay);
     }
+
+
+
 
     void Reloadlevel()
     {
