@@ -12,8 +12,14 @@ public class Collusion : MonoBehaviour
     public GameObject ecder;
     public GameObject ecder2;
     [SerializeField] Transform parent;
+    [SerializeField] AudioClip olme;
+     AudioSource audio;
 
 
+    void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
 
 
     private void OnTriggerEnter(Collider collision)
@@ -22,7 +28,7 @@ public class Collusion : MonoBehaviour
         Debug.Log("asd");
         GameObject vfx = Instantiate(crashVfx, transform.position, Quaternion.identity);
         vfx.transform.parent = parent;
-
+        audio.PlayOneShot(olme);
         ecder.GetComponent<SkinnedMeshRenderer>().enabled = false;
         ecder2.GetComponent<Movement>().enabled = false;
         GetComponent<BoxCollider>().enabled = false;

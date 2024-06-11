@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Enemy : MonoBehaviour
+public class enemi2 : MonoBehaviour
 {
     [SerializeField] int ScorePerHit = 15;
     [SerializeField] int hitPoints = 4;
@@ -14,7 +15,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject parentV2;
     [SerializeField] AudioClip olme;
     AudioSource audio;
-     public GameObject yoket1; 
+    public GameObject yoket1; 
+    public GameObject yoket2;
+    public GameObject yoket3;
+    public GameObject yoket4;
      
 
 
@@ -51,10 +55,13 @@ public class Enemy : MonoBehaviour
         audio.PlayOneShot(olme);
         GameObject vfx = Instantiate(deathVfx, transform.position, Quaternion.identity);
         vfx.transform.parent = parent;
-        yoket1.GetComponent<SkinnedMeshRenderer>().enabled = false;
+        yoket1.SetActive(false);  
+        yoket2.SetActive(false);
+        yoket3.SetActive(false);  
+        yoket4.SetActive(false);  
        
         GetComponent<BoxCollider>().enabled = false;
-       // Destroy(gameObject);
-       // Destroy(parentV2);
+        // Destroy(gameObject);
+        // Destroy(parentV2);
     }
 }

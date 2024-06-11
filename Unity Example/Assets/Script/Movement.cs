@@ -11,11 +11,12 @@ public class Movement : MonoBehaviour
     [SerializeField] float yRange = 5f;
 
     [SerializeField] GameObject[] lasers;
-
+    [SerializeField] AudioClip lazEErrrrSilahUU;
     [SerializeField] float positionPitchFactor = -2f;
     [SerializeField] float positionYawFactor = 2f;
     [SerializeField] float controlPitchFactor = -10;
     [SerializeField] float controlRollFactor = -20f;
+     AudioSource audio;
 
     float xThrow;
     float yThrow;
@@ -27,14 +28,25 @@ public class Movement : MonoBehaviour
         ProcessFiring();
     }
 
+     void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
+
     private void ProcessFiring()
     {
         if (Input.GetButton("Fire1"))
         {
             SetLasersActive(true);
+            if (audio.isPlaying == false)
+            {
+                audio.PlayOneShot(lazEErrrrSilahUU);
+            }
+            
         }
         else
         {
+            audio.Stop();
             SetLasersActive(false);
         }
     }
@@ -45,6 +57,7 @@ public class Movement : MonoBehaviour
         {
             var emissionModule = laser.GetComponent<ParticleSystem>().emission;
             emissionModule.enabled = isActive;
+            
         }
     }
 
